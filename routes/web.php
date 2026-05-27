@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PublicPagesController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 // Public facing website routes
@@ -11,11 +12,8 @@ Route::get('/contact', [PublicPagesController::class, 'contact'])->name('contact
 // Handle form submission
 Route::post('/contact', [PublicPagesController::class, 'store'])->name('contact.store');
 
-use App\Http\Controllers\AdminController;
-
 // Public Opportunities Page (Requirement 1.4)
-// Public Opportunities Page (Requirement 1.4)
-Route::get('/opportunities', [\App\Http\Controllers\PublicPagesController::class, 'opportunities'])->name('public.opportunities');
+Route::get('/opportunities', [PublicPagesController::class, 'opportunities'])->name('public.opportunities');
 
 // Admin Login Routes
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');

@@ -43,7 +43,7 @@ class PublicPagesController extends Controller
     {
         // 1. Validate the incoming data
         $validated = $request->validate([
-            'type'         => 'required|string|in:Enterprise,Academic,Startup',
+            'type'         => 'required|string|in:Enterprise,Academic,Startup,Investor,Researcher,Talent,Supplier',
             'name'         => 'required|string|max:255',
             'email'        => 'required|email|max:255',
             'organization' => 'required|string|max:255',

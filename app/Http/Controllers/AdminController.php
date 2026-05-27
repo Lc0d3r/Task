@@ -54,12 +54,30 @@ class AdminController extends Controller
 
     // --- OPPORTUNITIES CRUD ---
     public function storeOpportunity(Request $request) {
-        Opportunity::create($request->all());
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'type' => 'required|string',
+            'description' => 'required|string',
+            'country_region' => 'required|string',
+            'deadline' => 'required|date',
+            'link' => 'nullable|url',
+            'status' => 'required|in:Active,Closed',
+        ]);
+        Opportunity::create($validated);
         return back()->with('success', 'Opportunity created successfully.');
     }
 
     public function updateOpportunity(Request $request, $id) {
-        Opportunity::findOrFail($id)->update($request->all());
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'type' => 'required|string',
+            'description' => 'required|string',
+            'country_region' => 'required|string',
+            'deadline' => 'required|date',
+            'link' => 'nullable|url',
+            'status' => 'required|in:Active,Closed',
+        ]);
+        Opportunity::findOrFail($id)->update($validated);
         return back()->with('success', 'Opportunity updated successfully.');
     }
 
@@ -70,12 +88,28 @@ class AdminController extends Controller
 
     // --- CHALLENGES CRUD ---
     public function storeChallenge(Request $request) {
-        Challenge::create($request->all());
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'organization' => 'required|string',
+            'sector' => 'required|string',
+            'description' => 'required|string',
+            'deadline' => 'required|date',
+            'status' => 'required|in:Open,Closed',
+        ]);
+        Challenge::create($validated);
         return back()->with('success', 'Challenge created successfully.');
     }
 
     public function updateChallenge(Request $request, $id) {
-        Challenge::findOrFail($id)->update($request->all());
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'organization' => 'required|string',
+            'sector' => 'required|string',
+            'description' => 'required|string',
+            'deadline' => 'required|date',
+            'status' => 'required|in:Open,Closed',
+        ]);
+        Challenge::findOrFail($id)->update($validated);
         return back()->with('success', 'Challenge updated successfully.');
     }
 
