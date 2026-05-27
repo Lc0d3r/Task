@@ -15,6 +15,7 @@
                 <a href="{{ route('home') }}" class="hover:text-indigo-300">Home</a>
                 <a href="{{ route('about') }}" class="hover:text-indigo-300">About</a>
                 <a href="{{ route('modules') }}" class="hover:text-indigo-300">Modules</a>
+                <a href="{{ route('public.opportunities') }}" class="text-gray-700 hover:text-indigo-600 font-semibold text-sm transition px-3 py-2 rounded-lg">Opportunities</a>
                 <a href="{{ route('contact') }}" class="bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-700">Join Platform</a>
             </div>
         </div>
