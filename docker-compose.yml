@@ -51,15 +51,16 @@ services:
     networks:
       - ehopn-network
 
-  # Adminer - Database Management
-  adminer:
-    image: adminer
-    container_name: ehopn-adminer
-    restart: unless-stopped
+  # SQLite Web GUI
+  db_gui:
+    image: ghcr.io/coleifer/sqlite-web:latest
+    container_name: ehopn_db_gui
     ports:
       - "8081:8080"
-    networks:
-      - ehopn-network
+    volumes:
+      - ./database:/data
+    command: database.sqlite
+    restart: always
 
 networks:
   ehopn-network:

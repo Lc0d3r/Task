@@ -56,6 +56,9 @@ docker compose exec app php artisan migrate
 ### 6. Access the App
 Open your browser and navigate to: http://localhost:8080
 
+### 7. Database Management
+You can inspect your SQLite database using the web interface at: http://localhost:8081
+
 ## Common Commands
 - **Stop services:** `docker compose down`
 - **View logs:** `docker compose logs -f`
