@@ -4,7 +4,7 @@
 <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
     
     <!-- Top Bar -->
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
             <h1 class="text-3xl font-black text-indigo-950">Administrative Control Center</h1>
             <p class="text-gray-600 text-sm">Real-time EHOPn ecosystem platform management.</p>
@@ -29,27 +29,34 @@
     @endif
 
     <!-- 1. Stats Grid (Requirement 2.2 + Bonus Charts/Cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Applications</p>
-                <p class="text-3xl font-extrabold text-indigo-950 mt-1">{{ $stats['total_apps'] }}</p>
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Join Apps</p>
+                <p class="text-3xl font-extrabold text-indigo-950 mt-1">{{ $stats['total_join_requests'] }}</p>
             </div>
-            <span class="text-3xl p-3 bg-indigo-50 rounded-lg">📋</span>
+            <span class="text-2xl p-3 bg-indigo-50 rounded-lg">📋</span>
         </div>
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Active Opportunities</p>
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Contact Messages</p>
+                <p class="text-3xl font-extrabold text-blue-600 mt-1">{{ $stats['total_contacts'] }}</p>
+            </div>
+            <span class="text-2xl p-3 bg-blue-50 rounded-lg">✉️</span>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Active Opps</p>
                 <p class="text-3xl font-extrabold text-emerald-600 mt-1">{{ $stats['total_opps'] }}</p>
             </div>
-            <span class="text-3xl p-3 bg-emerald-50 rounded-lg">💰</span>
+            <span class="text-2xl p-3 bg-emerald-50 rounded-lg">💰</span>
         </div>
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Ecosystem Challenges</p>
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Challenges</p>
                 <p class="text-3xl font-extrabold text-amber-600 mt-1">{{ $stats['total_challenges'] }}</p>
             </div>
-            <span class="text-3xl p-3 bg-amber-50 rounded-lg">🚀</span>
+            <span class="text-2xl p-3 bg-amber-50 rounded-lg">🚀</span>
         </div>
     </div>
 
@@ -120,14 +127,14 @@
     </div>
 
     <!-- 3. Opportunities & Challenges Split Manager (Requirement 2.4 + 2.5 + Search Bonus) -->
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- Opportunities CRUD Box -->
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
                 <h3 class="text-lg font-bold text-indigo-950">Manage Funding & Grants</h3>
-                <form method="GET" class="flex gap-2">
-                    <input type="text" name="search_opp" value="{{ request('search_opp') }}" placeholder="Filter title..." class="px-2 py-1 text-xs border rounded-lg">
+                <form method="GET" class="flex gap-2 w-full sm:w-auto">
+                    <input type="text" name="search_opp" value="{{ request('search_opp') }}" placeholder="Filter title..." class="px-2 py-1 text-xs border rounded-lg flex-grow">
                     <button type="submit" class="bg-gray-100 text-xs px-2 rounded-lg">Go</button>
                 </form>
             </div>
@@ -135,12 +142,12 @@
             <!-- Fast Quick-Add Form -->
             <form action="{{ route('admin.opportunities.store') }}" method="POST" class="bg-gray-50 p-4 rounded-xl mb-4 text-xs space-y-2">
                 @csrf
-                <div class="grid grid-cols-2 gap-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <input type="text" name="title" placeholder="Opportunity Title" required class="p-2 border rounded">
                     <input type="text" name="type" placeholder="Type (e.g. Grant, Seed)" required class="p-2 border rounded">
                     <input type="text" name="country_region" placeholder="Region (e.g. Europe)" required class="p-2 border rounded">
                     <input type="date" name="deadline" required class="p-2 border rounded">
-                    <input type="url" name="link" placeholder="External Link (Optional)" class="p-2 border rounded col-span-2">
+                    <input type="url" name="link" placeholder="External Link (Optional)" class="p-2 border rounded sm:col-span-2">
                 </div>
                 <textarea name="description" placeholder="Short description details..." required class="w-full p-2 border rounded"></textarea>
                 <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2 rounded hover:bg-emerald-700 transition">Create New Field Allocation</button>
@@ -150,9 +157,9 @@
             <div class="space-y-2 max-h-60 overflow-y-auto">
                 @foreach($opportunities as $opp)
                 <div class="p-3 bg-white border rounded-lg flex justify-between items-center text-xs">
-                    <div>
-                        <h5 class="font-bold text-gray-900">{{ $opp->title }}</h5>
-                        <p class="text-gray-400 font-mono text-[10px]">{{ $opp->type }} · {{ $opp->country_region }}</p>
+                    <div class="min-w-0 flex-1 mr-2">
+                        <h5 class="font-bold text-gray-900 truncate">{{ $opp->title }}</h5>
+                        <p class="text-gray-400 font-mono text-[10px] truncate">{{ $opp->type }} · {{ $opp->country_region }}</p>
                     </div>
                     <form action="{{ route('admin.opportunities.delete', $opp->id) }}" method="POST">
                         @csrf @method('DELETE')
@@ -165,10 +172,10 @@
 
         <!-- Challenges CRUD Box -->
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
                 <h3 class="text-lg font-bold text-indigo-950">Manage Ecosystem Challenges</h3>
-                <form method="GET" class="flex gap-2">
-                    <input type="text" name="search_chal" value="{{ request('search_chal') }}" placeholder="Filter title..." class="px-2 py-1 text-xs border rounded-lg">
+                <form method="GET" class="flex gap-2 w-full sm:w-auto">
+                    <input type="text" name="search_chal" value="{{ request('search_chal') }}" placeholder="Filter title..." class="px-2 py-1 text-xs border rounded-lg flex-grow">
                     <button type="submit" class="bg-gray-100 text-xs px-2 rounded-lg">Go</button>
                 </form>
             </div>
@@ -176,7 +183,7 @@
             <!-- Fast Quick-Add Form -->
             <form action="{{ route('admin.challenges.store') }}" method="POST" class="bg-gray-50 p-4 rounded-xl mb-4 text-xs space-y-2">
                 @csrf
-                <div class="grid grid-cols-2 gap-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <input type="text" name="title" placeholder="Challenge Bottleneck Title" required class="p-2 border rounded">
                     <input type="text" name="organization" placeholder="Organization" required class="p-2 border rounded">
                     <input type="text" name="sector" placeholder="Sector (e.g. Energy)" required class="p-2 border rounded">
@@ -190,9 +197,9 @@
             <div class="space-y-2 max-h-60 overflow-y-auto">
                 @foreach($challenges as $chal)
                 <div class="p-3 bg-white border rounded-lg flex justify-between items-center text-xs">
-                    <div>
-                        <h5 class="font-bold text-gray-900">{{ $chal->title }}</h5>
-                        <p class="text-gray-400 font-mono text-[10px]">{{ $chal->organization }} · {{ $chal->sector }}</p>
+                    <div class="min-w-0 flex-1 mr-2">
+                        <h5 class="font-bold text-gray-900 truncate">{{ $chal->title }}</h5>
+                        <p class="text-gray-400 font-mono text-[10px] truncate">{{ $chal->organization }} · {{ $chal->sector }}</p>
                     </div>
                     <form action="{{ route('admin.challenges.delete', $chal->id) }}" method="POST">
                         @csrf @method('DELETE')

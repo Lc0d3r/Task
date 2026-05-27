@@ -9,7 +9,7 @@
         </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {{-- 1. AI Matchmaking --}}
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <span class="text-3xl mb-4 block">🤖</span>

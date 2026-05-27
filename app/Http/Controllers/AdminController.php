@@ -31,6 +31,7 @@ class AdminController extends Controller
         // 1. Gather Statistics (Requirement 2.2 + Bonus Visual Cards)
         $stats = [
             'total_apps' => Application::count(),
+            'total_join_requests' => Application::where('type', '!=', 'Contact')->count(),
             'total_opps' => Opportunity::count(),
             'total_challenges' => Challenge::count(),
             'total_contacts' => Application::where('type', 'Contact')->count(),
@@ -59,14 +60,14 @@ class AdminController extends Controller
     public function storeOpportunity(Request $request) {
         // Ensure status defaults to Active if not provided by the quick-add form
         $request->merge(['status' => $request->status ?? 'Active']);
-        
+
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|string',
             'description' => 'required|string',
             'country_region' => 'required|string',
             'deadline' => 'required|date',
-            'link' => 'nullable|url',
+            'link' => 'nullable|string', // Relaxed for prototype flexibility
             'status' => 'required|in:Active,Closed',
         ]);
         Opportunity::create($data);

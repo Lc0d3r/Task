@@ -24,7 +24,7 @@
             <!-- Crucial Laravel Security Token -->
             @csrf
             
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Actor Type Selection -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">I am registering as a:</label>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Contact Email -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Contact Email Address:</label>

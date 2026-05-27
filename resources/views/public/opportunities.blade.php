@@ -7,7 +7,7 @@
         <p class="text-lg text-gray-600">Discover grants, research calls, and investment programs to fuel your innovation.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse($opportunities as $opportunity)
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
                 <div>

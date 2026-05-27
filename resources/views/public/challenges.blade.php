@@ -7,7 +7,7 @@
         <p class="text-lg text-gray-600">Explore technical bottlenecks and strategic problems posted by our industrial partners.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid sm:grid-cols-2 gap-8">
         @forelse($challenges as $challenge)
             <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
                 <div>
