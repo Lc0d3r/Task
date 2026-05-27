@@ -32,4 +32,23 @@ class PublicPagesController extends Controller
     { 
         return view('public.contact'); 
     }
+
+    // Handles the incoming form submission
+    public function store(Request $request)
+    {
+        // 1. Validate the incoming data
+        $validated = $request->validate([
+            'type'         => 'required|string|in:Enterprise,Academic,Startup',
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|email|max:255',
+            'organization' => 'required|string|max:255',
+            'message'      => 'required|string|max:2000',
+        ]);
+
+        // 2. Save it to the database using the ORM model
+        Application::create($validated);
+
+        // 3. Send the user back to the form with a success flash message
+        return redirect()->route('contact')->with('success', 'Thank you! Your platform application has been submitted successfully.');
+    }
 }

@@ -8,10 +8,21 @@
         <p class="text-gray-600">Submit an application to register your organization, project, or enterprise needs.</p>
     </div>
 
+    <!-- Success Flash Message Alert -->
+    @if(session('success'))
+        <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg shadow-sm flex items-center space-x-3">
+            <span class="text-xl">✅</span>
+            <span class="font-medium">{{ session('success') }}</span>
+        </div>
+    @endif
+
     <!-- Application Form Container -->
     <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-        <form action="#" method="POST" class="space-y-6">
-            <!-- CSRF Token Placeholder (We will activate this soon) -->
+        <!-- Action updated to hit our named route -->
+        <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+            
+            <!-- Crucial Laravel Security Token -->
+            @csrf
             
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Actor Type Selection -->
