@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-6xl mx-auto py-16 px-4">
+<div class="max-w-6xl mx-auto pt-28 pb-16 px-4">
     <div class="text-center mb-16">
         <h1 class="text-4xl font-extrabold text-indigo-950 mb-4">Platform Core Modules</h1>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">

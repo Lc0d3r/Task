@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto pt-24 pb-10 px-4 sm:px-6 lg:px-8">
     
     <!-- Top Bar -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">

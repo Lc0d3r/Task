@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto py-16 px-4">
+<div class="max-w-3xl mx-auto pt-28 pb-16 px-4">
     <!-- Header -->
     <div class="text-center mb-10">
         <h1 class="text-4xl font-extrabold text-indigo-950 mb-3">Join the EHOPn Network</h1>

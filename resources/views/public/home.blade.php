@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gradient-to-r from-indigo-800 to-indigo-950 text-white py-24 px-6 text-center">
+<div class="bg-gradient-to-r from-indigo-800 to-indigo-950 text-white pt-32 pb-24 px-6 text-center">
     <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Accelerating Ecosystem Innovation</h1>
     <p class="text-xl max-w-2xl mx-auto mb-8 text-indigo-200">
         EHOPn connects enterprise challenges, capital backing, and top academic research minds into a single unified workspace.
