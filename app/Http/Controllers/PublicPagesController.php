@@ -56,4 +56,13 @@ class PublicPagesController extends Controller
         // 3. Send the user back to the form with a success flash message
         return redirect()->route('contact')->with('success', 'Thank you! Your platform application has been submitted successfully.');
     }
+    
+    public function opportunities()
+    {
+        // Fetch the records to pass them directly to your view
+        $opportunities = Opportunity::where('status', 'Active')->latest()->get();
+        
+        // Return your opportunities view file
+        return view('opportunities', compact('opportunities'));
+    }
 }
