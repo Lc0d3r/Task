@@ -12,6 +12,18 @@
             The **EHOPn Platform** (Ecosystem Hyper-collaboration and Open Innovation Network) serves as an infrastructure catalyst designed to eliminate communication silos between industry, academia, and startup ecosystems. 
         </p>
 
+        <div class="grid md:grid-cols-2 gap-8 my-8">
+            <div>
+                <h3 class="text-xl font-bold text-indigo-950 mb-2">Our Vision</h3>
+                <p class="text-gray-600 text-sm">To be the global standard for industrial-academic hyper-collaboration, turning every complex problem into a structured opportunity for innovation.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-indigo-950 mb-2">Our Mission</h3>
+                <p class="text-gray-600 text-sm">To provide a transparent, high-speed matching ecosystem where capital, challenges, and research talent converge to solve the world's technical bottlenecks.</p>
+            </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-indigo-950">The Problem We Solve</h3>
         <p>
             Too often, incredible research remains locked inside academic papers, while corporations struggle to find specialized talent or innovative answers to pressing technical challenges. EHOPn fixes this mismatch by giving all actors a centralized marketplace to post transparent goals, open funding opportunities, and evaluate strategic technical talent in real time.
         </p>

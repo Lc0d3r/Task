@@ -59,6 +59,15 @@ Open your browser and navigate to: http://localhost:8080
 ### 7. Database Management
 You can inspect your SQLite database using the web interface at: http://localhost:8081
 
+## Administrative Access
+
+The platform includes a dedicated admin panel to manage content, track innovation challenges, and process join requests.
+
+- **URL:** [http://localhost:8080/admin/login](http://localhost:8080/admin/login)
+- **Default Credentials:**
+    - **Email:** `admin@ehopn.com`
+    - **Password:** `password123`
+
 ## Common Commands
 - **Stop services:** `docker compose down`
 - **View logs:** `docker compose logs -f`

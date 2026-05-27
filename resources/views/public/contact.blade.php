@@ -31,8 +31,12 @@
                     <select name="type" class="w-full border border-gray-300 rounded-md p-2.5 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
                         <option value="">-- Select Profile Type --</option>
                         <option value="Enterprise">Enterprise / Corporation</option>
-                        <option value="Academic">Academic Researcher / Lab</option>
                         <option value="Startup">Startup / Innovator</option>
+                        <option value="Investor">Investor</option>
+                        <option value="Researcher">Researcher / Academic</option>
+                        <option value="Talent">Specialized Talent</option>
+                        <option value="Supplier">Industrial Supplier</option>
+                        <option value="Contact">General Inquiry</option>
                     </select>
                 </div>
 
