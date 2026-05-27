@@ -48,9 +48,11 @@ class AdminController extends Controller
             return $query->where('title', 'like', "%{$searchChal}%");
         })->latest()->get();
 
-        $applications = Application::latest()->get();
+        // Separate Join Requests from General Contact Messages (Requirement 2.3 & 2.6)
+        $joinRequests = Application::where('type', '!=', 'Contact')->latest()->get();
+        $contactMessages = Application::where('type', 'Contact')->latest()->get();
 
-        return view('admin.dashboard', compact('stats', 'opportunities', 'challenges', 'applications'));
+        return view('admin.dashboard', compact('stats', 'opportunities', 'challenges', 'joinRequests', 'contactMessages'));
     }
 
     // --- OPPORTUNITIES CRUD ---
