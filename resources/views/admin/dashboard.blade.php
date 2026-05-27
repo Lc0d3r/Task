@@ -15,6 +15,19 @@
         </form>
     </div>
 
+    <!-- Status Messages & Validation Errors -->
+    @if ($errors->any())
+        <div class="mb-8 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+            <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="mb-8 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-sm">{{ session('success') }}</div>
+    @endif
+
     <!-- 1. Stats Grid (Requirement 2.2 + Bonus Charts/Cards) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
@@ -127,6 +140,7 @@
                     <input type="text" name="type" placeholder="Type (e.g. Grant, Seed)" required class="p-2 border rounded">
                     <input type="text" name="country_region" placeholder="Region (e.g. Europe)" required class="p-2 border rounded">
                     <input type="date" name="deadline" required class="p-2 border rounded">
+                    <input type="url" name="link" placeholder="External Link (Optional)" class="p-2 border rounded col-span-2">
                 </div>
                 <textarea name="description" placeholder="Short description details..." required class="w-full p-2 border rounded"></textarea>
                 <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2 rounded hover:bg-emerald-700 transition">Create New Field Allocation</button>
@@ -164,7 +178,9 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-2">
                     <input type="text" name="title" placeholder="Challenge Bottleneck Title" required class="p-2 border rounded">
-                    <input type="text" name="type" placeholder="Type (e.g. Technical)" required class="p-2 border rounded">
+                    <input type="text" name="organization" placeholder="Organization" required class="p-2 border rounded">
+                    <input type="text" name="sector" placeholder="Sector (e.g. Energy)" required class="p-2 border rounded">
+                    <input type="date" name="deadline" required class="p-2 border rounded">
                 </div>
                 <textarea name="description" placeholder="Describe the corporate operational bottleneck..." required class="w-full p-2 border rounded"></textarea>
                 <button type="submit" class="w-full bg-amber-600 text-white font-bold p-2 rounded hover:bg-amber-700 transition">Publish Active Challenge</button>
@@ -176,7 +192,7 @@
                 <div class="p-3 bg-white border rounded-lg flex justify-between items-center text-xs">
                     <div>
                         <h5 class="font-bold text-gray-900">{{ $chal->title }}</h5>
-                        <p class="text-gray-400 font-mono text-[10px]">{{ $chal->type ?? 'Technical' }}</p>
+                        <p class="text-gray-400 font-mono text-[10px]">{{ $chal->organization }} · {{ $chal->sector }}</p>
                     </div>
                     <form action="{{ route('admin.challenges.delete', $chal->id) }}" method="POST">
                         @csrf @method('DELETE')

@@ -57,7 +57,10 @@ class AdminController extends Controller
 
     // --- OPPORTUNITIES CRUD ---
     public function storeOpportunity(Request $request) {
-        $validated = $request->validate([
+        // Ensure status defaults to Active if not provided by the quick-add form
+        $request->merge(['status' => $request->status ?? 'Active']);
+        
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|string',
             'description' => 'required|string',
@@ -66,12 +69,12 @@ class AdminController extends Controller
             'link' => 'nullable|url',
             'status' => 'required|in:Active,Closed',
         ]);
-        Opportunity::create($validated);
+        Opportunity::create($data);
         return back()->with('success', 'Opportunity created successfully.');
     }
 
     public function updateOpportunity(Request $request, $id) {
-        $validated = $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|string',
             'description' => 'required|string',
@@ -80,7 +83,7 @@ class AdminController extends Controller
             'link' => 'nullable|url',
             'status' => 'required|in:Active,Closed',
         ]);
-        Opportunity::findOrFail($id)->update($validated);
+        Opportunity::findOrFail($id)->update($data);
         return back()->with('success', 'Opportunity updated successfully.');
     }
 
@@ -91,7 +94,10 @@ class AdminController extends Controller
 
     // --- CHALLENGES CRUD ---
     public function storeChallenge(Request $request) {
-        $validated = $request->validate([
+        // Ensure status defaults to Open if not provided
+        $request->merge(['status' => $request->status ?? 'Open']);
+
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'organization' => 'required|string',
             'sector' => 'required|string',
@@ -99,12 +105,12 @@ class AdminController extends Controller
             'deadline' => 'required|date',
             'status' => 'required|in:Open,Closed',
         ]);
-        Challenge::create($validated);
+        Challenge::create($data);
         return back()->with('success', 'Challenge created successfully.');
     }
 
     public function updateChallenge(Request $request, $id) {
-        $validated = $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'organization' => 'required|string',
             'sector' => 'required|string',
@@ -112,7 +118,7 @@ class AdminController extends Controller
             'deadline' => 'required|date',
             'status' => 'required|in:Open,Closed',
         ]);
-        Challenge::findOrFail($id)->update($validated);
+        Challenge::findOrFail($id)->update($data);
         return back()->with('success', 'Challenge updated successfully.');
     }
 
