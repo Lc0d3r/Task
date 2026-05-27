@@ -43,7 +43,7 @@ class PublicPagesController extends Controller
     {
         // 1. Validate the incoming data
         $validated = $request->validate([
-            'type'         => 'required|string|in:Enterprise,Academic,Startup,Investor,Researcher,Talent,Supplier',
+            'type'         => 'required|string|in:Enterprise,Academic,Startup,Investor,Researcher,Talent,Supplier,Contact',
             'name'         => 'required|string|max:255',
             'email'        => 'required|email|max:255',
             'organization' => 'required|string|max:255',
@@ -64,5 +64,13 @@ class PublicPagesController extends Controller
         
         // Return your opportunities view file
         return view('public.opportunities', compact('opportunities'));
+    }
+
+    public function challenges()
+    {
+        // Fetch open challenges to pass them directly to your view
+        $challenges = Challenge::where('status', 'Open')->latest()->get();
+        
+        return view('public.challenges', compact('challenges'));
     }
 }

@@ -33,6 +33,7 @@ class AdminController extends Controller
             'total_apps' => Application::count(),
             'total_opps' => Opportunity::count(),
             'total_challenges' => Challenge::count(),
+            'total_contacts' => Application::where('type', 'Contact')->count(),
         ];
 
         // 2. Handle Search & Filters (Bonus Feature!)

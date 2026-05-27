@@ -13,7 +13,7 @@ Ehopn is a specialized Laravel-based platform designed to bridge the gap between
 
 -   **Framework:** Laravel 11 (PHP 8.2)
 -   **Web Server:** Nginx (Alpine-based)
--   **Database:** MySQL 8.0
+-   **Database:** SQLite (Default for rapid evaluation) / MySQL 8.0
 -   **Runtime:** PHP-FPM
 -   **Tooling:** Docker & Docker Compose
 
