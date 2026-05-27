@@ -14,7 +14,8 @@ Route::post('/contact', [PublicPagesController::class, 'store'])->name('contact.
 use App\Http\Controllers\AdminController;
 
 // Public Opportunities Page (Requirement 1.4)
-Route::get('/opportunities', [App\Http\Controllers\PublicPagesController.php, 'opportunities'])->name('public.opportunities');
+// Public Opportunities Page (Requirement 1.4)
+Route::get('/opportunities', [\App\Http\Controllers\PublicPagesController::class, 'opportunities'])->name('public.opportunities');
 
 // Admin Login Routes
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
