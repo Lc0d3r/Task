@@ -63,6 +63,6 @@ class PublicPagesController extends Controller
         $opportunities = Opportunity::where('status', 'Active')->latest()->get();
         
         // Return your opportunities view file
-        return view('opportunities', compact('opportunities'));
+        return view('public.opportunities', compact('opportunities'));
     }
 }
