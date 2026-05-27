@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  # PHP Application Server
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ehopn-app
+    container_name: ehopn-app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    volumes:
+      - ./:/var/www
+    networks:
+      - ehopn-network
+
+  # Nginx Web Server
+  webserver:
+    image: nginx:alpine
+    container_name: ehopn-webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - ehopn-network
+
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: ehopn-db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ehopn_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - ehopn-network
+
+networks:
+  ehopn-network:
+    driver: bridge
+volumes:
+  dbdata:
+    driver: local
