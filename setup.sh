@@ -1,27 +1,49 @@
 #!/bin/bash
 
-echo "🚀 Starting EHOPn Platform Prototype Setup..."
+# Exit immediately if a command exits with a non-zero status
+set -e
 
-# 1. Copy the environment file if it doesn't exist
+echo "===================================================="
+echo "🚀 EXECUTING AUTOMATED EHOPN PLATFORM CORE BUILD"
+echo "===================================================="
+
+# 1. Environment Handling
 if [ ! -f .env ]; then
-    echo "📄 Creating .env file..."
+    echo "📄 [1/6] Copying fresh environment layout..."
     cp .env.example .env
+else
+    echo "📄 [1/6] Existing .env file detected. Skipping copy."
 fi
 
-# 2. Build and start the Docker containers
-echo "🐳 Spinning up Docker containers..."
+# 2. Spin up containers
+echo "🐳 [2/6] Synchronizing Docker infrastructure..."
 docker compose up -d --build
 
-# Give containers a couple of seconds to initialize safely
-sleep 3
+echo "⏳ Waiting for environment initialization layers..."
+sleep 5
 
-# 3. Fix SQLite permissions inside the container automatically
-echo "🔒 Adjusting SQLite database permissions..."
+# 3. Core Framework Package Installation
+echo "📦 [3/6] Fetching and caching vendor dependencies via Composer..."
+docker compose exec -T app composer install --no-interaction --prefer-dist
+
+# 4. Generate Application Crypto Key (Fixes the missing key bug!)
+echo "🔑 [4/6] Generating unique application cryptographic signature..."
+docker compose exec -T app php artisan key:generate --force
+
+# 5. Lock down transactional data store permissions
+echo "🔒 [5/6] Provisioning SQLite structural storage permissions..."
 docker compose exec -T app touch database/database.sqlite
 docker compose exec -T app chmod -R 777 database
+docker compose exec -T app chmod -R 777 storage
 
-# 4. Run database migrations
-echo "🗄️ Running database migrations..."
-docker compose exec -T app php artisan migrate --force
+# 6. Database schema structures and mocking vectors
+echo "🗄️ [6/6] Executing fresh migrations and injecting mock seeder data..."
+docker compose exec -T app php artisan migrate:fresh --seed
 
-echo "✨ Setup complete! The platform is live at http://localhost:8080"
+echo "===================================================="
+echo "✨ SYSTEM STATUS: LIVE & ONLINE"
+echo "===================================================="
+echo "🖥️  Public Web Platform: http://localhost:8080"
+echo "🔐 Administrative Panel: http://localhost:8080/admin/login"
+echo "📊 Database GUI Browser: http://localhost:8081"
+echo "===================================================="
