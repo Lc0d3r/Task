@@ -1,24 +1,37 @@
 # Ehopn Innovation Platform
 
-A Laravel-based platform designed to manage innovation challenges, funding opportunities, and user applications.
+Ehopn is a specialized Laravel-based platform designed to bridge the gap between innovation and execution. It provides a centralized hub to manage innovation challenges, track funding opportunities, and process applications from diverse stakeholders including Startups, Enterprises, and Academic institutions.
+
+## Core Features
+
+- **Innovation Challenges:** Track and display sector-specific challenges with deadlines and status tracking.
+- **Funding Opportunities:** A directory of grants, research calls, and investment programs.
+- **Unified Application System:** A streamlined submission process for Enterprise, Academic, and Startup applicants.
+- **Dockerized Environment:** Fully containerized setup for consistent development and deployment.
 
 ## Tech Stack
-- **Framework:** Laravel 11 (PHP 8.2)
-- **Web Server:** Nginx (Alpine)
-- **Database:** MySQL 8.0
-- **Containerization:** Docker & Docker Compose
+
+-   **Framework:** Laravel 11 (PHP 8.2)
+-   **Web Server:** Nginx (Alpine-based)
+-   **Database:** MySQL 8.0
+-   **Runtime:** PHP-FPM
+-   **Tooling:** Docker & Docker Compose
 
 ## Getting Started
 
-Follow these steps to set up the project locally using Docker.
-
 ### 1. Prerequisites
-Ensure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed.
 
-### 2. Launch the Containers
-Build and start the environment in detached mode:
+Ensure you have the following installed:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+### 2. Automated Setup (Recommended)
+
+The easiest way to get started is by running the provided setup script:
+
 ```bash
-docker compose up -d --build
+chmod +x setup.sh
+./setup.sh
 ```
 
 ### 3. Install Dependencies

@@ -51,6 +51,16 @@ services:
     networks:
       - ehopn-network
 
+  # Adminer - Database Management
+  adminer:
+    image: adminer
+    container_name: ehopn-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    networks:
+      - ehopn-network
+
 networks:
   ehopn-network:
     driver: bridge
