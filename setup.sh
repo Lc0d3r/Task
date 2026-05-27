@@ -8,11 +8,27 @@ echo "🚀 EXECUTING AUTOMATED EHOPN PLATFORM CORE BUILD"
 echo "===================================================="
 
 # 1. Environment Handling
+# 1. Environment Handling
 if [ ! -f .env ]; then
-    echo "📄 [1/6] Copying fresh environment layout..."
-    cp .env.example .env
+    echo "📄 [1/6] Self-generating fresh .env configuration layer..."
+    cat <<EOT > .env
+APP_NAME=EHOPn
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8080
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+EOT
 else
-    echo "📄 [1/6] Existing .env file detected. Skipping copy."
+    echo "📄 [1/6] Existing .env file detected. Skipping creation."
 fi
 
 # 2. Spin up containers
