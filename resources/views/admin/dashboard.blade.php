@@ -42,26 +42,28 @@
 
     <!-- 2. Manage Incoming Applications (Requirement 2.3) -->
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-10">
-        <h2 class="text-xl font-bold text-indigo-950 mb-4">Ecosystem Join Applications / Messages</h2>
+        <h2 class="text-xl font-bold text-indigo-950 mb-4">Ecosystem Join Applications (Startups, Research, etc.)</h2>
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-indigo-950 font-semibold uppercase text-xs">
                     <tr>
                         <th class="p-3">Applicant Name</th>
                         <th class="p-3">Email</th>
+                        <th class="p-3">Organization</th>
                         <th class="p-3">Target Profile</th>
                         <th class="p-3">Message Snippet</th>
                         <th class="p-3">Submitted Date</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    @forelse($applications as $app)
+                    @forelse($joinRequests as $app)
                     <tr>
                         <td class="p-3 font-bold text-gray-900">{{ $app->name }}</td>
                         <td class="p-3 text-indigo-600">{{ $app->email }}</td>
+                        <td class="p-3">{{ $app->organization }}</td>
                         <td class="p-3">
                             <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 uppercase">
-                                {{ $app->profile_type ?? 'Contact' }}
+                                {{ $app->type }}
                             </span>
                         </td>
                         <td class="p-3 max-w-xs truncate">{{ $app->message }}</td>
@@ -69,6 +71,35 @@
                     </tr>
                     @empty
                     <tr><td colspan="5" class="p-4 text-center text-gray-400">No applications received yet.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 4. Manage General Contact Messages (Requirement 2.6) -->
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mb-10">
+        <h2 class="text-xl font-bold text-indigo-950 mb-4">General Contact Messages</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-600">
+                <thead class="bg-gray-50 text-indigo-950 font-semibold uppercase text-xs">
+                    <tr>
+                        <th class="p-3">Name</th>
+                        <th class="p-3">Email</th>
+                        <th class="p-3">Message Content</th>
+                        <th class="p-3">Submitted Date</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse($contactMessages as $msg)
+                    <tr>
+                        <td class="p-3 font-bold text-gray-900">{{ $msg->name }}</td>
+                        <td class="p-3 text-indigo-600">{{ $msg->email }}</td>
+                        <td class="p-3 max-w-lg">{{ $msg->message }}</td>
+                        <td class="p-3 text-xs text-gray-400">{{ $msg->created_at->format('Y-m-d H:i') }}</td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="4" class="p-4 text-center text-gray-400">No messages received yet.</td></tr>
                     @endforelse
                 </tbody>
             </table>
