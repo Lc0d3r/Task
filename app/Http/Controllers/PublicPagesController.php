@@ -22,9 +22,14 @@ class PublicPagesController extends Controller
     }
     
     // Loads the platform modules page
-    public function modules() 
-    { 
-        return view('public.modules'); 
+    public function modules()
+    {
+        // Fetch all rows from both tables
+        $opportunities = Opportunity::latest()->get();
+        $challenges = Challenge::latest()->get();
+
+        // Pass the data variables straight into the blade view
+        return view('public.modules', compact('opportunities', 'challenges'));
     }
 
     // Loads the contact / join page
