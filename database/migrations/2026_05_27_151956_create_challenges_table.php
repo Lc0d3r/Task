@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('challenges', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('title');
+        $table->string('organization');
+        $table->string('sector');
+        $table->text('description');
+        $table->date('deadline');
+        $table->string('status')->default('Open'); // Open, Closed
+        $table->timestamps();
+    });
     }
 
     /**

@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('opportunities', function (Blueprint $table) {
+            Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('type'); // Funding, Grant, Research Call, Startup Program, Investment
+            $table->text('description');
+            $table->string('country_region');
+            $table->date('deadline');
+            $table->string('link')->nullable();
+            $table->string('status')->default('Active'); // Active, Closed
             $table->timestamps();
         });
     }
